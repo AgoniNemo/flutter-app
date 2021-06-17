@@ -5,10 +5,10 @@ class ListViewPage extends StatelessWidget {
   ListViewPage({Key? key});
 
   final List<ListItem> listItems = [
-    ListItem(title: '个人中心', iconData: Icons.message, subTitle: '查看您的消息'),
-    ListItem(title: '我的收藏', iconData: Icons.search, subTitle: '搜索历史记录'),
+    ListItem(title: '个人中心', iconData: Icons.info, subTitle: '查看您的消息'),
+    ListItem(title: '我的收藏', iconData: Icons.collections, subTitle: '搜索历史记录'),
     ListItem(title: '我的设置', iconData: Icons.settings, subTitle: '设置应用参数'),
-    ListItem(title: '历史记录', iconData: Icons.account_box, subTitle: '查看您的账户')
+    ListItem(title: '历史记录', iconData: Icons.history, subTitle: '查看您的账户')
   ];
 
   _onTap(ListItem item) {
