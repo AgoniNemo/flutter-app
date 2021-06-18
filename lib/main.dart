@@ -48,16 +48,13 @@ class _MainState extends State<Main> {
   bool isLogin = false;
 
   void _getUserInfo() async {
-     SharedPreferences prefs = await SharedPreferences.getInstance(); //初始化
-      // String temp="my是最棒的！！！";
-      // testList.add(temp);
-      // prefs.setStringList('testInfo', testList);
+     SharedPreferences prefs = await SharedPreferences.getInstance();
       bool login =  prefs.getBool('isLogin')??false;
       setState(() {
         isLogin = login;
       });
-      print('===========isLogin');
-      print(isLogin);
+      print('===========isLogin $login');
+
   }
 
   @override

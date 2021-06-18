@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -8,54 +9,42 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List _imageNames = [
-    {'image': 'images/avatar.png', 'tips': 'hello nemos'},
-    {'image': 'images/AlbumHeader.png', 'tips': '大图'}
-  ];
+  List dataSource = [];
   int _index = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter(BuildContext context) {
+    // RenderBox renderBox = context.findRenderObject();
+    // var screenSize = renderBox.size;
     setState(() {
-      _index = (++_index) % _imageNames.length;
+      
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('首页'),
-      ),
-      body: Center(
-        widthFactor: 300,
-        heightFactor: 300,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              width: 128,
-              height: 128,
-              margin: EdgeInsets.only(top: 10, bottom: 10),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(35),
-                child: Image.asset(
-                  _imageNames[_index]['image'],
-                  fit: BoxFit.cover,
-                ),
+      body:ConstrainedBox(
+          constraints: BoxConstraints.expand(),
+          child: Stack(
+            alignment: AlignmentDirectional.center,//指定未定位或部分定位的子组件的对齐方式
+            children: <Widget>[
+              Container(
+                width: 70,
+                height: 70,
+                child: Text("Hello World", style:TextStyle(color: Colors.white)),
+                color: Colors.blue,
               ),
-            ),
-            Text(
-              _imageNames[_index]['tips'],
-            ),
-          ],
+              Positioned(
+                left: 18.0,
+                child: Text("I am Jack"),
+              ),
+              Positioned(
+                top: 30.0,
+                child: Text("Your friend"),
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
   }
 }
