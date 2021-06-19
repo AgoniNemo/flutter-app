@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'pages/App.dart';
-import 'common/UserInfo.dart';
 import 'pages/Login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -47,20 +45,26 @@ class _MainState extends State<Main> {
 
   bool isLogin = false;
 
-  void _getUserInfo() async {
-     SharedPreferences prefs = await SharedPreferences.getInstance();
-      bool login =  prefs.getBool('isLogin')??false;
-      setState(() {
-        isLogin = login;
-      });
-      print('===========isLogin $login');
+  @override
+  void initState() { 
+    super.initState();
+    // 获取用户信息
+    getLogin().then((login) => 
+        setState(() {
+          this.isLogin = login;
+        })
+    );
+  }
 
+  //读取数据
+  Future<bool> getLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var login = prefs.getBool("isLogin")??false; //读取counter的值
+    return login; //返回
   }
 
   @override
     Widget build(BuildContext context) {
-    // 获取用户信息
-    _getUserInfo();
     return MaterialApp(
       title: 'Flutter app',
       theme: ThemeData(
